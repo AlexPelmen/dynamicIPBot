@@ -16,5 +16,4 @@
 	@$test = include_once __DIR__ . "/hookies/".$command.".php"; 
 	if( ! $test )
 		include_once __DIR__ . "/hookies/DEFAULT.php";
-?>	
-
+?>

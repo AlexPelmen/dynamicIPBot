@@ -29,7 +29,7 @@
 		
 		//offset of the first unconfirmed message
 		protected function getLastOffset(){
-			$off = file_get_contents( "lastOffset.txt" );
+			$off = file_get_contents( dirname(__DIR__)."/lastOffset.txt" );
 			if( !$off || !is_numeric( $off ) ){	//bad offset
 				$off = $this->getUpdates( 0, 1 )->result[0]->update_id;
 				if( ! $off )
@@ -43,7 +43,7 @@
 			$off = $this->getLastOffset();
 			$res = $this->getUpdates( $off );
 			if( isset( $res->result[0]->update_id ) ){
-				file_put_contents( "lastOffset.txt", ++$off );
+				file_put_contents( dirname(__DIR__)."/lastOffset.txt", ++$off );
 				return $res;
 			}
 			return false;
@@ -81,5 +81,5 @@
 			return $resp;
 		}			
 	}
-?>	
+?>
 
